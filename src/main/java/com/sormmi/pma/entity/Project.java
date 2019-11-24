@@ -1,4 +1,4 @@
-package com.sormmi.pma.entities;
+package com.sormmi.pma.entity;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

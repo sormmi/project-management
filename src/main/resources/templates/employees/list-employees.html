@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.w3.org/1999/xhtml"
+      layout:decorate="~{fragments/layout}">
+
+<head><title>Employees</title></head>
+
+<body>
+
+<div layout:fragment="content" class="container">
+    <h3>Employee Directory</h3>
+    <hr>
+
+    <!--  Add New Employee Button -->
+    <a th:href="@{/employees/new}"
+       class="btn btn-primary btn-sm mb-3">
+        Add Employee
+    </a>
+    <br></br>
+
+    <table class="table table-bordered table-striped">
+        <thead class="thead-dark">
+        <tr>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Email</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="employee : ${employees}">
+            <td th:text="${employee.firstName}"/>
+            <td th:text="${employee.lastName}"/>
+            <td th:text="${employee.email}"/>
+        </tr>
+        </tbody>
+
+    </table>
+</div>
+</body>
+
+</html>
