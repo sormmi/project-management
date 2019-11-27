@@ -11,44 +11,67 @@
 <body>
 
 <div layout:fragment="content" class="container">
-    <div>
-        <h3>Current Projects</h3>
-        <table class="striped">
-            <thead>
-                <tr>
-                    <th>Project Name</th>
-                    <th>Project Stage</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr th:each="project : ${projects}">
-                    <td th:text="${project.name}" />
-                    <td th:text="${project.stage}" />
-                </tr>
-            </tbody>
-        </table>
+
+    <h3>Main Dashboard</h3>
+
+    <hr>
+
+    <div class="row">
+
+        <div class="col-md-6">
+
+            <h4> Projects </h4>
+            <table class="table table-bordered table-sm">
+                <thead class="thead-light">
+                    <tr>
+                        <th> Project Name </th>
+                        <th> Project Stage </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="project : ${projects}">
+                        <td th:text="${project.name}"/>
+                        <td th:text="${project.stage}"/>
+                    </tr>
+                </tbody>
+            </table>
+
+            <br>
+
+            <h4> Employees </h4>
+            <table class="table table-bordered table-sm">
+                <thead class="thead-light">
+                    <tr>
+                        <th> First Name </th>
+                        <th> Last Name </th>
+                        <th> Project Count </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="employee : ${employeeProjects}">
+                        <td th:text="${employee.firstName}"/>
+                        <td th:text="${employee.lastName}"/>
+                        <td th:text="${employee.projectCount}"/>
+                    </tr>
+                </tbody>
+            </table>
+
+        </div>
+
+        <div class="col-md-6">
+            <canvas id="myChart" height="50" width="50"></canvas>
+            <script>
+                let chartData = "[[${projectStatus}]]"
+            </script>
+        </div>
+
     </div>
 
-    <div>
-        <h3>Current Employees</h3>
-        <table>
-            <thead>
-            <tr>
-                <th>First Name</th>
-                <th>Last Name</th>
-                <th>Email</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr th:each="employee : ${employees}">
-                <td th:text="${employee.firstName}" />
-                <td th:text="${employee.lastName}" />
-                <td th:text="${employee.email}" />
-            </tr>
-            </tbody>
-        </table>
-    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.js"></script>
+    <script type="text/javascript" th:src="@{js/chart.js}"></script>
+
 </div>
+
 
 </body>
 

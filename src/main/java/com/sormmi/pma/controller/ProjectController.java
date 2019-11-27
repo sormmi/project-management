@@ -1,6 +1,7 @@
 package com.sormmi.pma.controller;
 
 import com.sormmi.pma.entity.Project;
+import com.sormmi.pma.repository.EmployeeRepository;
 import com.sormmi.pma.repository.ProjectRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,6 +16,8 @@ public class ProjectController {
 
     @Autowired
     ProjectRepository projectRepository;
+    @Autowired
+    EmployeeRepository employeeRepository;
 
     @GetMapping
     public String fetchAll(Model model) {
@@ -24,8 +27,11 @@ public class ProjectController {
 
     @GetMapping("/new")
     public String displayProjectForm(Model model) {
+
         var project = new Project();
         model.addAttribute("project", project);
+        model.addAttribute("allEmployees", employeeRepository.findAll());
+
         return "projects/new-project";
     }
 
